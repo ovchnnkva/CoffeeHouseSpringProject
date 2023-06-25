@@ -1,0 +1,23 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+#logoImg{
+    width: 150px;
+    height: 100px;
+    margin-left: 30px;
+}
+.ingredients-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+.block-right{
+    margin-left: 150px;
+}
+
+.submit_form{
+    justify-content: center;
+    width: 30%;
+}
