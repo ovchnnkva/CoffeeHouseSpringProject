@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">>
 <head>
     <meta charset="UTF-8">
     <title>Coffee House</title>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
+
 <body>
 <div class = "header">
   <h1 id="header_label">Собери свой кофе</h1>
   <img th:src="@{/images/logo.png}" alt="" id="logoImg"/>
 </div>
 
-  <form method="POST" th:object="${coffee}">
+  <form method="POST" th:object="${coffeeObj}">
     <div class = "grid">
 
     <div class = "ingredients-box">
@@ -19,24 +21,18 @@
       <div class="block-left">
 
       <div class="ingredient-group" id="coffee">
-      <h3>Выберите кофе</h3>
-      <div th:each="ingredient: ${coffee}">
-        <label>
-          <input type="checkbox"
-                 th:value = "${ingredient.id}"/>
-        </label>
-        <span th:text = "${ingredient.name}">INGREDIENT</span><br/>
-      </div>
+        <h3>Выберите кофе</h3>
+          <div th:each="ingredient: ${coffee}">
+              <input th:field="*{ingredients}" type="checkbox" th:value = "${ingredient.id}"/>
+              <span th:text = "${ingredient.name}">INGREDIENT</span><br/>
+          </div>
       </div>
 
       <div class="ingredient-group" id ="milks">
         <h3>Выберите молоко</h3>
         <div th:each = "ingredient: ${milk}">
-          <label>
-            <input type="checkbox"
-              th:value="${ingredient.id}"/>
-          </label>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+            <input th:field="*{ingredients}" type="checkbox" th:value="${ingredient.id}"/>
+          <span th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</span><br/>
         </div>
       </div>
 
@@ -46,38 +42,30 @@
 
         <div class="ingredient-group" id="syrup">
           <h3>Добавьте сироп</h3>
-          <div th:each="ingredient: ${syrup}">
-            <label>
-              <input type="checkbox"
-                     th:value = "${ingredient.id}"/>
-            </label>
-            <span th:text = "${ingredient.name}">INGREDIENT</span><br/>
+          <div th:each="ingredient: ${syrup}" >
+              <input th:field="*{ingredients}" type="checkbox" th:value = "${ingredient.id}"/>
+              <span th:for="${ingredient.id}" th:text = "${ingredient.name}">INGREDIENT</span><br/>
           </div>
         </div>
 
         <div class="ingredient-group" id ="additional">
           <h3>Дополнительно</h3>
           <div th:each = "ingredient: ${additional}">
-            <label>
-              <input type="checkbox"
-                     th:value="${ingredient.id}"/>
-            </label>
-            <span th:text="${ingredient.name}">INGREDIENT</span><br/>
+              <input th:field="*{ingredients}" type="checkbox" th:value="${ingredient.id}"/>
+            <span th:for="${ingredient.id}" th:text="${ingredient.name}">INGREDIENT</span><br/>
           </div>
         </div>
 
       </div>
-
+    </div>
     </div>
 
       <div class="submit_form">
         <h3>Назовите свой кофе</h3>
-        <input type = "text"/>
+        <input type = "text" th:field="*{name}"/>
         <br/>
         <button>Создать</button>
       </div>
-
-    </div>
   </form>
 </body>
 </html>
