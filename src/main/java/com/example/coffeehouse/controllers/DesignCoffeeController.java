@@ -1,16 +1,20 @@
 package com.example.coffeehouse.controllers;
 
+import com.example.coffeehouse.data.repositories.IngredientRepository;
 import com.example.coffeehouse.model.Coffee;
 import com.example.coffeehouse.model.CoffeeOrder;
 import com.example.coffeehouse.model.Ingredient;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,18 +24,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 public class DesignCoffeeController {
 
+    private final IngredientRepository ingredientRepository;
+
+    @Autowired
+    public DesignCoffeeController(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("МОЛ_КОР", "Коровье Молоко", Ingredient.Type.MILK),
-                new Ingredient("МОЛ_КОК", "Кокосовое Молоко", Ingredient.Type.MILK),
-                new Ingredient("СИР_КЛЕН", "Кленовый Сироп", Ingredient.Type.SYRUP),
-                new Ingredient("СИР_БАН", "Банановый Сироп", Ingredient.Type.SYRUP),
-                new Ingredient("ДОП_КОР", "Корица", Ingredient.Type.ADDITIONAL),
-                new Ingredient("ТИП_ЛАТ", "Латте", Ingredient.Type.COFFEE),
-                new Ingredient("ТИП_КАП", "Капучино", Ingredient.Type.COFFEE),
-                new Ingredient("ТИП_ФЛЭТ", "Флэт Уайт", Ingredient.Type.COFFEE)
-        );
+        Iterable<Ingredient> ingredients = ingredientRepository.findAll();
         Ingredient.Type[] types = Ingredient.Type.values();
         for (Ingredient.Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
@@ -65,9 +67,16 @@ public class DesignCoffeeController {
         return "redirect:/orders/current";
     }
 
-    private List<Ingredient> filterByType(List<Ingredient> ingredients, Ingredient.Type type){
-        return ingredients.stream()
-                .filter(ingredient -> ingredient.getType().equals(type))
-                .collect(Collectors.toList());
+    private List<Ingredient> filterByType(Iterable<Ingredient> ingredients, Ingredient.Type type){
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator();
+        List<Ingredient> ingredientFilter = new ArrayList<>();
+        while(ingredientIterator.hasNext()){
+            Ingredient ingredient = ingredientIterator.next();
+            if(ingredient.getType().equals(type)) {
+                ingredientFilter.add(ingredient);
+            }
+        }
+
+        return ingredientFilter;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.coffeehouse.controllers;
 
+import com.example.coffeehouse.data.repositories.OrderRepository;
 import com.example.coffeehouse.model.CoffeeOrder;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("coffeeOrder")
 public class OrderController {
 
+    private final OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository){
+        this.orderRepository = orderRepository;
+    }
+
     @GetMapping("/current")
     public String orderForm(){
         return "orderForm";
@@ -26,6 +33,7 @@ public class OrderController {
             return "orderForm";
         }
         log.info("Order submittes: {}", coffeeOrder);
+        orderRepository.save(coffeeOrder);
         sessionStatus.setComplete();
 
         return "redirect:/";

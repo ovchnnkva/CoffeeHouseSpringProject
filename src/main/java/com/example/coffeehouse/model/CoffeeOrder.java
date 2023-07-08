@@ -1,5 +1,6 @@
 package com.example.coffeehouse.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -15,8 +16,13 @@ import java.util.List;
 @Data
 @Setter
 @Getter
+@Entity
 public class CoffeeOrder {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private LocalDate placeAt = LocalDate.now();
 
     @NotBlank(message = "Обязательное поле")
@@ -40,6 +46,7 @@ public class CoffeeOrder {
     @Digits(integer = 3, fraction = 0, message = "Неверный формат CVV")
     private String ccCVV;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Coffee> coffeeList = new ArrayList<>();
 
     public void addCoffee(Coffee coffee){

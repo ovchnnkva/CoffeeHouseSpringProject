@@ -4,3 +4,6 @@ spring:
     name: coffeehouse
   thymeleaf:
     cache: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true

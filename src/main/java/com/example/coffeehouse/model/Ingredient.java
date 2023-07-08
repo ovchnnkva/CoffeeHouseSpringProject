@@ -1,28 +1,24 @@
 package com.example.coffeehouse.model;
 
-import lombok.Data;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Setter
 @Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Ingredient {
+
+    @Id
+    @Column(name = "ID")
     private String id;
+
+    @Column(name = "NAME")
     private String name;
+    @Column(name = "TYPE")
+    @Enumerated(EnumType.STRING)
     private Type type;
-
-    public Ingredient(String id, String name, Type type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
-
-    public Ingredient(){
-
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof Ingredient;
-    }
 
     public enum Type {
         MILK, SYRUP, ADDITIONAL, COFFEE
