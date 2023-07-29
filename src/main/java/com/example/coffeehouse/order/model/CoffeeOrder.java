@@ -49,6 +49,9 @@ public class CoffeeOrder {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Coffee> coffeeList = new ArrayList<>();
 
+    @ManyToOne
+    private Users user;
+
     public void addCoffee(Coffee coffee){
         this.coffeeList.add(coffee);
     }
