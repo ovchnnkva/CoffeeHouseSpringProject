@@ -1,10 +1,7 @@
-package com.example.coffeehouse.data.repositories;
+package com.example.coffeehouse.order.data.repositories;
 
-import com.example.coffeehouse.model.Ingredient;
+import com.example.coffeehouse.order.model.Ingredient;
 import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 

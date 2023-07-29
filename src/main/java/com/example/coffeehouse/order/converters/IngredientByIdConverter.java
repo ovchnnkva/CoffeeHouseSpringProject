@@ -1,14 +1,10 @@
-package com.example.coffeehouse.converters;
+package com.example.coffeehouse.order.converters;
 
-import com.example.coffeehouse.data.repositories.IngredientRepository;
-import com.example.coffeehouse.model.Ingredient;
-import lombok.extern.apachecommons.CommonsLog;
+import com.example.coffeehouse.order.data.repositories.IngredientRepository;
+import com.example.coffeehouse.order.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {

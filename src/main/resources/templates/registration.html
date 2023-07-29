@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout.html}">
+  <head>
+    <title>Taco Cloud</title>
+  </head>
+  
+  <body>
+    <section layout:fragment="main" class="content">
+      <h1>Регистрация</h1>
+      
+      <form method="POST" th:action="@{/register}" id="registerForm">
+      
+          <label th:for="username">Логин: </label>
+          <input type="text" name="username"/><br/>
+  
+          <label th:for="password">Пароль: </label>
+          <input type="password" name="password"/><br/>
+  
+          <label th:for="confirm">Повторите пароль: </label>
+          <input type="password" name="confirm"/><br/>
+  
+          <label th:for="fullname">Полное имя: </label>
+          <input type="text" name="fullname"/><br/>
+      
+          <label th:for="street">Улица: </label>
+          <input type="text" name="street"/><br/>
+      
+          <label th:for="city">Город: </label>
+          <input type="text" name="city"/><br/>
+      
+          <label th:for="phone">Телефон: </label>
+          <input type="text" name="phone"/><br/>
+      
+          <input type="submit" value="Register"/>
+      </form>
+    </section>
+  </body>
 </html>

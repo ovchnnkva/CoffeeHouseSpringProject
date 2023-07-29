@@ -1,5 +1,6 @@
-package com.example.coffeehouse.model;
+package com.example.coffeehouse.order.model;
 
+import com.example.coffeehouse.security.model.Users;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +20,11 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class CoffeeOrder {
+public class CoffeeOrder implements Serializable {
+
+    @Serial
+    @Transient
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,6 +57,7 @@ public class CoffeeOrder {
     private List<Coffee> coffeeList = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(name = "orders")
     private Users user;
 
     public void addCoffee(Coffee coffee){

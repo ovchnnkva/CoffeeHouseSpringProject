@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"/>
+  <head>
+    <title>CoffeeHouse</title>
+  </head>
+  
+  <body>
+      <h1>Войти</h1>
+      
+      <div th:if="${error}"> 
+        Введены некорректные данные
+      </div>
 
-</body>
+         <a th:href="@{/register}">Зарегистрироваться:</a> </p>
+      
+      <form method="POST" th:action="@{/login}" id="loginForm">
+        <label th:for="username">Логин: </label>
+        <input type="text" name="username"/><br/>
+        
+        <label th:for="password">Пароль: </label>
+        <input type="password" name="password"/><br/>
+        
+        <input type="submit" value="Login"/>
+      </form>
+  </body>
 </html>

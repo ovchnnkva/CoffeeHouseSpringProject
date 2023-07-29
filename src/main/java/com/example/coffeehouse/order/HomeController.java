@@ -1,4 +1,4 @@
-package com.example.coffeehouse.controllers;
+package com.example.coffeehouse.order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

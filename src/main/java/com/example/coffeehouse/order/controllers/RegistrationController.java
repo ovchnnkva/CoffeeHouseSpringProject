@@ -1,4 +1,4 @@
-package com.example.coffeehouse.security.controllers;
+package com.example.coffeehouse.order.controllers;
 import com.example.coffeehouse.security.RegistrationForm;
 import com.example.coffeehouse.security.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class RegistrationController {
   
-  private UserRepository userRepo;
-  private PasswordEncoder passwordEncoder;
+  private final UserRepository userRepo;
+  private final PasswordEncoder passwordEncoder;
 
   public RegistrationController(
       UserRepository userRepo, PasswordEncoder passwordEncoder) {

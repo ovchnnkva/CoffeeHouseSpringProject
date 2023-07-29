@@ -1,6 +1,6 @@
 package com.example.coffeehouse;
 
-import com.example.coffeehouse.controllers.HomeController;
+import com.example.coffeehouse.order.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

@@ -31,3 +31,4 @@ insert into Ingredient (id, name, type)
 
 insert into Ingredient (id, name, type)
         values ('ВАН_СИР', 'Ванильный сироп', 'SYRUP');
+

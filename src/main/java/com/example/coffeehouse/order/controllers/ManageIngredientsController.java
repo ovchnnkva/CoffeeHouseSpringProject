@@ -1,4 +1,4 @@
-package com.example.coffeehouse.security.controllers;
+package com.example.coffeehouse.order.controllers;
 
 import com.example.coffeehouse.api.IngredientService;
 import com.example.coffeehouse.order.model.Ingredient;
@@ -24,7 +24,7 @@ public class ManageIngredientsController {
   
   @PostMapping
   public String addIngredient(Ingredient ingredient) {
-    ingredientService.addIngredient(ingredient);
+    ingredientService.save(ingredient);
     return "redirect:/admin/ingredients";
   }
   

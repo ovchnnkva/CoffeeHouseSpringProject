@@ -1,9 +1,9 @@
-package com.example.coffeehouse.controllers;
+package com.example.coffeehouse.order.controllers;
 
-import com.example.coffeehouse.data.repositories.IngredientRepository;
-import com.example.coffeehouse.model.Coffee;
-import com.example.coffeehouse.model.CoffeeOrder;
-import com.example.coffeehouse.model.Ingredient;
+import com.example.coffeehouse.order.data.repositories.IngredientRepository;
+import com.example.coffeehouse.order.model.Coffee;
+import com.example.coffeehouse.order.model.CoffeeOrder;
+import com.example.coffeehouse.order.model.Ingredient;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +13,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller

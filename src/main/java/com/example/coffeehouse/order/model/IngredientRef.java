@@ -1,4 +1,4 @@
-package com.example.coffeehouse.model;
+package com.example.coffeehouse.order.model;
 
 import lombok.Data;
 
